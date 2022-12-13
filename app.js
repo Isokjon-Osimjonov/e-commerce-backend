@@ -7,6 +7,9 @@ app.use(express.json());
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+// app.use("/", (req, res) => {
+//   res.send("Hello World");
+// });
 app.use("/api/v1/users", userRouter);
 
 app.all("*", (req, res, next) => {
