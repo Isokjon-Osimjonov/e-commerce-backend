@@ -6,11 +6,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please tell us your name!"],
   },
-  phoneNumber: {
-    type: Number,
-    required: [true, "Please tell us your phone number"],
-  },
-
   email: {
     type: String,
     required: [true, "Please provide your email"],
@@ -18,23 +13,28 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, "Please provide a valid email"],
   },
+  phoneNumber: {
+    type: Number,
+    required: [true, "Please tell us your phone number"],
+  },
+
   // address: { type: String, default: "" },
   address: {
     city: {
       type: String,
-      required: [true, "Please provide your city"],
+      // required: [true, "Please provide your city"],
     },
     town: {
       type: String,
-      required: [true, "Please provide your town"],
+      // required: [true, "Please provide your town"],
     },
     detailed_address: {
       type: String,
-      required: [true, "Please provide your: street name , home number  "],
+      // required: [true, "Please provide your: street name , home number  "],
     },
     post_index: {
       type: Number,
-      required: [true, "Please provide  post index of your city or town "],
+      // required: [true, "Please provide  post index of your city or town "],
     },
   },
 
@@ -67,6 +67,11 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
     select: false,
+  },
+  role: {
+    type: String,
+    default: "user",
+    enum: ["admin", "user"],
   },
 });
 // This is hashing function this function hashspassword before saving it
