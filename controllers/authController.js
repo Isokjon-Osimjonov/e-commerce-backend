@@ -14,7 +14,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
     phoneNumber: req.body.phoneNumber,
-    // address: req.body.address,
+    address: req.body.address,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
   });
@@ -44,7 +44,7 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError("Please provide email and password", 400));
   }
 
-  // 2Check if user eist & password is correct
+  // 2Check if user exist & password is correct
   const user = await User.findOne({ email: email }).select("+password");
   console.log(user);
 
@@ -62,4 +62,8 @@ exports.login = catchAsync(async (req, res, next) => {
     status: "success",
     token,
   });
+});
+
+exports.protect = catchAsync(async (err, res, next) => {
+  next();
 });
