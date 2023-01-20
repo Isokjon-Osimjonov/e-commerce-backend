@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const AppError = require("./utils/appError");
 const userRouter = require("./routes/userRoutes");
+const productsRoutes = require("./routes/produtsRoutes");
 const cors = require("cors");
 const app = express();
 app.use(cors());
@@ -13,6 +14,7 @@ if (process.env.NODE_ENV === "development") {
 //   res.send("Hello World");
 // });
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/products", productsRoutes);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

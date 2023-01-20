@@ -1,8 +1,8 @@
-const CREATE_PRODUCT = require("../models/createProducts");
+const Products = require("../models/createProductsModel");
 const catchAsync = require("../utils/catchAsync");
 
 exports.createNewProduct = catchAsync(async (req, res, next) => {
-  const newProduct = await CREATE_PRODUCT.create({
+  const newProduct = await Products.create({
     productName: req.body.productName,
     productPrice: req.body.productPrice,
     productDiscount: req.body.productDiscount,
@@ -10,7 +10,13 @@ exports.createNewProduct = catchAsync(async (req, res, next) => {
     productImage: req.body.productImage,
     productCategory: req.body.productCategory,
     productStock: req.body.productStock,
-    productFeature: req.body.productFeature,
     productDeliveryTime: req.body.productDeliveryTime,
+    productBrand: req.body.productBrand,
+  });
+  res.status(201).json({
+    status: "success",
+    data: {
+      product: newProduct,
+    },
   });
 });
